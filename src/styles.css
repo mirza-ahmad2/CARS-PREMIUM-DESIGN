@@ -1,0 +1,259 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-steel: var(--steel);
+  --color-surface: var(--surface);
+  --font-display: "Barlow Condensed", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.5rem;
+
+  /* Brand */
+  --brand-red: oklch(0.58 0.22 25);
+  --brand-red-deep: oklch(0.5 0.22 24);
+  --ink: oklch(0.16 0.005 0);
+  --ink-soft: oklch(0.24 0.005 0);
+  --steel: oklch(0.62 0.01 250);
+  --surface: oklch(0.97 0.003 250);
+
+  --background: oklch(1 0 0);
+  --foreground: var(--ink);
+  --card: oklch(1 0 0);
+  --card-foreground: var(--ink);
+  --popover: oklch(1 0 0);
+  --popover-foreground: var(--ink);
+  --primary: var(--brand-red);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: var(--ink);
+  --secondary-foreground: oklch(1 0 0);
+  --muted: var(--surface);
+  --muted-foreground: oklch(0.45 0.005 0);
+  --accent: var(--surface);
+  --accent-foreground: var(--ink);
+  --destructive: var(--brand-red);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.9 0.005 250);
+  --input: oklch(0.9 0.005 250);
+  --ring: var(--brand-red);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 0.95;
+    text-transform: uppercase;
+  }
+  :focus-visible {
+    outline: 2px solid var(--brand-red);
+    outline-offset: 2px;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@utility container-cars {
+  width: min(90vw, 1500px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@utility diag-stripes {
+  background-image: repeating-linear-gradient(
+    135deg,
+    var(--brand-red) 0 14px,
+    var(--ink) 14px 28px
+  );
+}
+
+@utility text-glow-red {
+  text-shadow: 0 0 40px oklch(0.58 0.22 25 / 0.55);
+}
+
+@keyframes pulseRed {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 oklch(0.58 0.22 25 / 0.55);
+  }
+  50% {
+    box-shadow: 0 0 0 14px oklch(0.58 0.22 25 / 0);
+  }
+}
+@utility pulse-red {
+  animation: pulseRed 2s ease-out infinite;
+}
+
+@keyframes revealUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@utility reveal-up {
+  animation: revealUp 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@utility fade-in {
+  animation: fadeIn 0.5s ease both;
+}
+
+@keyframes slideFleet {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@utility fleet-marquee {
+  animation: slideFleet 40s linear infinite;
+}
+@utility fleet-marquee {
+  &:hover {
+    animation-play-state: paused;
+  }
+}
+
+@utility nav-link {
+  position: relative;
+  display: inline-block;
+}
+@utility nav-underline {
+  position: relative;
+}
+
+/* Premium interactive surfaces */
+@utility card-lift {
+  transition:
+    transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 0.35s ease,
+    border-color 0.25s ease;
+}
+@utility card-lift {
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+  }
+}
+
+@utility btn-press {
+  transition:
+    transform 0.15s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+@utility btn-press {
+  &:hover {
+    transform: translateY(-1px);
+  }
+  &:active {
+    transform: translateY(0) scale(0.98);
+  }
+}
+
+/* Styled native select fallback */
+select.cars-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23D71920' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.9rem center;
+  background-size: 1rem;
+  padding-right: 2.5rem;
+  color: var(--ink);
+  border-color: var(--border);
+  cursor: pointer;
+}
+select.cars-select:hover {
+  border-color: var(--brand-red);
+}
+select.cars-select:focus {
+  border-color: var(--brand-red);
+  box-shadow: 0 0 0 3px oklch(0.58 0.22 25 / 0.2);
+  outline: none;
+}
+select.cars-select option {
+  background: white;
+  color: var(--ink);
+  padding: 0.5rem;
+}
+select.cars-select option:checked,
+select.cars-select option:hover {
+  background: var(--brand-red);
+  color: white;
+}
