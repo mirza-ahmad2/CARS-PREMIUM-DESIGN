@@ -1,0 +1,21 @@
+{
+  "name": "CARS Recovery & Garage Services",
+  "short_name": "CARS Recovery",
+  "description": "24/7 vehicle recovery and garage services across Aberdeen and the North East.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0F0F0F",
+  "theme_color": "#0F0F0F",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}
